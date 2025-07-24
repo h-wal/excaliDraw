@@ -1,4 +1,13 @@
-import express from "express";
-import { Router } from "express";
+import express, { Router , Request, Response} from "express";
 
-export default signup
+
+const signUpRouter: Router = express.Router();
+
+async function signUpRouterFunction(req: Request, res: Response){
+    const username = req.body.username;
+    const password = req.body.password;
+    const email = req.body.email;
+
+    const username = userModel.createOne
+}
+    
