@@ -1,4 +1,5 @@
 import express, { Router , Request, Response} from "express";
+import prismaClient from "./client"
 
 
 const signUpRouter: Router = express.Router();
@@ -8,6 +9,6 @@ async function signUpRouterFunction(req: Request, res: Response){
     const password = req.body.password;
     const email = req.body.email;
 
-    const username = userModel.createOne
+    const userCreated = userModel.createOne
 }
     
