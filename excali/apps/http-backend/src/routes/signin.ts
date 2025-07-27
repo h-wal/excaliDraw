@@ -5,10 +5,31 @@ import {prismaClient} from "@repo/db/client"
 const signUpRouter: Router = express.Router();
 
 async function signUpRouterFunction(req: Request, res: Response){
-    const username = req.body.username;
-    const password = req.body.password;
-    const email = req.body.email;
 
-    const userCreated = prismaClient.crea
+    //add zod validation here
+    const parsedData = req.body;
+    
+    const username = parsedData.username;
+    const password = parsedData.password;
+    const email = parsedData.email;
+
+
+    try{
+        const userCreated = await prismaClient.user.create({
+            data:{
+                email: email,
+                username: username,
+                password: password
+            }
+        })
+    } catch(e){
+        res.status(403).send("eror"+e)
+    }
+
+    res.status(200).send("User Created Successfully")
 }
+
+module.exports({
+    
+})
     
