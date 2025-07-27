@@ -30,6 +30,5 @@ async function signUpRouterFunction(req: Request, res: Response){
 }
 
 module.exports({
-    
 })
     
