@@ -5,8 +5,5 @@
     "outDir": "./dist",
     // "module": "ESNext",              // Must be ESM-compatible
     // "moduleResolution": "node16",
-  },
-  "references" : [
-    { "path" : "../../packages/db" }
-  ]
+  }
 }
