@@ -1,6 +1,6 @@
 import express, { Router, Request, Response} from "express"
-import { prismaClient } from "@repo/db/client";
-const prisma = prismaClient;
+import db from "@repo/db/client";
+const {prismaClient} = db;
 
 
 const signUpRouter: Router = express.Router();
@@ -20,10 +20,11 @@ async function signUpRouterFunction(req: Request, res: Response){
     const email = parsedData.email;
 
     try{
-        const userCreated = await prisma.user.create({
+        const userCreated = await prismaClient.user.create({
+            //ts-ignore
             data:{
                 email: email,
-                username: username,
+                name: username,
                 password: password
             }
         })
@@ -43,7 +44,8 @@ async function adminsignUpRouterFunction(req: Request,res: Response){
 
 }
 
+signUpRouter.post("/admin", adminsignUpRouterFunction)
 signUpRouter.post("/", signUpRouterFunction)
-// signUpRouter.post("/admin", adminsignUpRouterFunction)
+
 
 export default signUpRouter

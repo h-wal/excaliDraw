@@ -1,34 +1,34 @@
-import express, { Router , Request, Response} from "express";
-import {prismaClient} from "@repo/db/client"
+// import express, { Router , Request, Response} from "express";
+// import {prismaClient} from "@repo/db/client"
 
 
-const signUpRouter: Router = express.Router();
+// const signUpRouter: Router = express.Router();
 
-async function signUpRouterFunction(req: Request, res: Response){
+// async function signUpRouterFunction(req: Request, res: Response){
 
-    //add zod validation here
-    const parsedData = req.body;
+//     //add zod validation here
+//     const parsedData = req.body;
     
-    const username = parsedData.username;
-    const password = parsedData.password;
-    const email = parsedData.email;
+//     const username = parsedData.username;
+//     const password = parsedData.password;
+//     const email = parsedData.email;
 
 
-    try{
-        const userCreated = await prismaClient.user.create({
-            data:{
-                email: email,
-                username: username,
-                password: password
-            }
-        })
-    } catch(e){
-        res.status(403).send("eror"+e)
-    }
+//     try{
+//         const userCreated = await prismaClient.user.create({
+//             data:{
+//                 email: email,
+//                 username: username,
+//                 password: password
+//             }
+//         })
+//     } catch(e){
+//         res.status(403).send("eror"+e)
+//     }
 
-    res.status(200).send("User Created Successfully")
-}
+//     res.status(200).send("User Created Successfully")
+// }
 
-module.exports({
-})
+// module.exports({
+// })
     

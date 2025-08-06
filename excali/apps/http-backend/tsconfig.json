@@ -5,5 +5,9 @@
     "outDir": "./dist",
     // "module": "ESNext",              // Must be ESM-compatible
     // "moduleResolution": "node16",
+  },
+  "ts-node": {
+    "experimentalSpecifierResolution": "node",
+    "esm": true
   }
 }
