@@ -14,7 +14,7 @@ async function signUpRouterFunction(req: Request, res: Response){
         res.status(400).send("Invalid Request")
         return;
     }
-
+    
     const username = parsedData.username;
     const password = parsedData.password;
     const email = parsedData.email;
