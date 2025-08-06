@@ -6,12 +6,14 @@
   "scripts": {
     "build": "tsc -b",
     "start": "node ./dist/index.js",
-    "dev":  "nodemon --exec \"NODE_OPTIONS='--loader ts-node/esm --experimental-specifier-resolution=node' ts-node -r tsconfig-paths/register\" src/index.ts"
+    "dev": "nodemon --exec \"NODE_OPTIONS='--loader ts-node/esm --experimental-specifier-resolution=node' ts-node -r tsconfig-paths/register\" src/index.ts"
   },
   "dependencies": {
     "@repo/db": "workspace:*",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.1.10"
   },
   "devDependencies": {

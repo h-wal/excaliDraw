@@ -1,7 +1,8 @@
 import express, { Router , Request, Response} from "express";
 import db from "@repo/db/client";
-const {prismaClient} = db;
+import jwt from "jsonwebtoken";
 
+const {prismaClient} = db;
 
 const signInRouter: Router = express.Router();
 
@@ -29,8 +30,12 @@ async function signInRouterFunction(req: Request, res: Response){
         }
 
         if (userFound.password = password){
+            const token = jwt.sign({
+                userid: userFound.id
+            },"jwt_secret")
+    
             res.json({
-                message: "User Signed In Successfull"
+                token: token
             })
         }
         else{
@@ -42,8 +47,6 @@ async function signInRouterFunction(req: Request, res: Response){
     } catch(e){
         res.status(403).send("eror"+e)
     }
-
-    res.send("hello World")
 }
 
 signInRouter.post("/", signInRouterFunction)
