@@ -1,7 +1,7 @@
 import express, { Router, Request, Response} from "express"
 import db from "@repo/db/client";
 const {prismaClient} = db;
-
+import dotenv from "dotenv"
 
 const signUpRouter: Router = express.Router();
 

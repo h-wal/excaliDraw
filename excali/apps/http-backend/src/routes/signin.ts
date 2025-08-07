@@ -1,6 +1,8 @@
 import express, { Router , Request, Response} from "express";
 import db from "@repo/db/client";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv"
+dotenv.config();
 
 const {prismaClient} = db;
 
@@ -29,10 +31,10 @@ async function signInRouterFunction(req: Request, res: Response){
             return
         }
 
-        if (userFound.password = password){
+        if (userFound.password === password){
             const token = jwt.sign({
                 userid: userFound.id
-            },"jwt_secret")
+            }, process.env.JWT_SECRET as string)
     
             res.json({
                 token: token
