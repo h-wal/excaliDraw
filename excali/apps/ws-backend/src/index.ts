@@ -79,12 +79,7 @@ wss.on('connection', function connection(ws, request){
 
     console.log(users)
 
-    // {
-    //     type: JoinRoom | CreateRoom | Chat,
-    //     message: message,
-    //     roomid: roomid
-    // }
-
+    
     ws.on('message', async function message(data){
 
         let parsedData;
@@ -96,11 +91,13 @@ wss.on('connection', function connection(ws, request){
         }
         
         if(parsedData.type == "JoinRoom"){
+            console.log(users)
             const user = users.find(x => x.ws === ws)
             if(!user){
                 return null
             }
-            user.rooms.push(parsedData.roomId)
+            user.rooms.push(parsedData.roomid)
+            console.log(user)
         }
 
         if(parsedData.type == "LeaveRoom"){
@@ -118,26 +115,26 @@ wss.on('connection', function connection(ws, request){
         if(parsedData.type == "chat"){
             const roomid = parsedData.roomid;
             const message = parsedData.message;
+            console.log(message, roomid)
 
             await prismaClient.chat.create({
                 data: {
                   roomId: Number(roomid),
                   message,
-                  userId : userid
+                  userId : userid,
                 }
             });
 
-            users.forEach((user) => {
-                if(user.rooms.includes(roomid)){
-                    user.ws.send(JSON.stringify({
+            users.forEach((users) => {
+                console.log(users)
+                if(users.rooms.includes(roomid)){
+                    users.ws.send(JSON.stringify({
                         type: "chat",
                         message: message,
                         roomid
                     }))
                 }
-            })
-
-            
+            })          
         }
     });
 
