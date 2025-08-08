@@ -10,9 +10,9 @@ const roomRouter: Router = express.Router();
 
 async function getChatsRouterfunction(req: Request, res: Response){
     const roomId = Number(req.params.roomId);
-    const message = await prismaClient.room.findMany({
+    const message = await prismaClient.chat.findMany({
         where:{
-            id: roomId
+            roomId: roomId
         },
         orderBy:{
             id: "desc"
@@ -25,6 +25,6 @@ async function getChatsRouterfunction(req: Request, res: Response){
     })
 }
 
-roomRouter.get("/chats/:roodId", getChatsRouterfunction)
+roomRouter.get("/chats/:roomId", getChatsRouterfunction)
 
 export default roomRouter
