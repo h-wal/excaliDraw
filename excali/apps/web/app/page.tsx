@@ -7,6 +7,9 @@ export default function Home() {
   return (
     <div className="bg-black h-screen"> 
       <input type="text" placeholder="roomid" />
+      <div className="text-white">
+        hi there
+      </div>
     </div>
   );
 }
