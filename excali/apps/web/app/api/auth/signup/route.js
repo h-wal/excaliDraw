@@ -7,7 +7,7 @@ export async function POST(req) {
   try {
     const { email, password } = await req.json();
 
-    const existingUser = await prismaClient.user.findFirst({
+    const existingUser = await prismaClient.user.findUnique({
         where:{
             email: email
         }
@@ -17,7 +17,7 @@ export async function POST(req) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await prismaClient.create({ 
+    const newUser = await prismaClient.user.create({ 
         data:{
             email: email,
             password: hashedPassword 
@@ -26,7 +26,6 @@ export async function POST(req) {
 
     return NextResponse.json({ success: true, user: newUser });
   } catch (err) {
-
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json({ error: err?.message || "Internal Server Error" }, { status: 500 });
   }
 }
