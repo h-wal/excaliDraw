@@ -25,7 +25,7 @@ async function signInRouterFunction(req: Request, res: Response){
         })
 
         if (!userFound){
-            res.json({
+            res.status(404).json({
                 message: "User does not exist"
             })
             return
@@ -36,18 +36,18 @@ async function signInRouterFunction(req: Request, res: Response){
                 userid: userFound.id
             }, process.env.JWT_SECRET as string)
     
-            res.json({
+            res.status(200).json({
                 token: token
             })
         }
         else{
-            res.json({
+            res.status(401).json({
                 message: "Invalid password"
             })
         }
 
     } catch(e){
-        res.status(403).send("eror"+e)
+        res.status(500).send("eror"+e)
     }
 }
 

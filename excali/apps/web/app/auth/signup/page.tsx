@@ -1,28 +1,34 @@
-"use client"; // Needed in Next.js App Router for client-side interactivity
+"use client"; 
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+
+
 
 export default function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     console.log(email, password)
-    e.preventDefault(); // prevent form reload
+    e.preventDefault();
 
     try {
       const res = await axios.post(
-        "http://localhost:3008/signup", // Your Express API endpoint
+        "http://localhost:3008/signup", 
         {
           username: username,
           email: email,
           password: password
         });
   
-      console.log(res.data); // success response
+      console.log(res.data);
+      //add a status check
       alert("Sign-up successful!");
-      
+      router.push("/auth/signin")
+
     } catch (error: any) {
       console.error(error);
       alert(error.response?.data?.error || "Sign-up failed");
