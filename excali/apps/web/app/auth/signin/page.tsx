@@ -20,7 +20,7 @@ export default function SignupForm() {
     if (res?.error) {
       setError("Invalid email or password");
     } else {
-      window.location.href = "/dashboard"; // Redirect after success
+      window.location.href = "/interface"; // Redirect after success
     }
 
   };

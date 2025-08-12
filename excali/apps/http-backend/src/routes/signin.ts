@@ -37,7 +37,9 @@ async function signInRouterFunction(req: Request, res: Response){
             }, process.env.JWT_SECRET as string)
     
             res.status(200).json({
-                token: token
+                email: userFound.email,
+                password: userFound.password,
+                name: userFound.name
             })
         }
         else{

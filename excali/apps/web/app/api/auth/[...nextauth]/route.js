@@ -4,7 +4,7 @@ import axios from "axios"
 
 console.log("NextAuth route loaded");
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -30,9 +30,14 @@ const handler = NextAuth({
         console.log(user)
 
         // 3. Return user object if valid
-        if (user.status == 200) {
-          return user; // must be an object, not null
-        }
+        if (user.status === 200 && user.data) {
+            console.log("from the backend", user.data); // check structure here
+            return {
+              password: user.data.password,       
+              email: user.data.email, 
+              name: user.data.name
+            };
+          }
 
         // If login fails
         return null;
@@ -64,6 +69,7 @@ const handler = NextAuth({
       return session;
     },
   },
-});
+}
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
