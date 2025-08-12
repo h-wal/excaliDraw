@@ -4,6 +4,11 @@ const textimg = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0
 <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
 </svg>
 
+const searchIcon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="gray" className="size-6">
+<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+</svg>
+
+
 
 export default function RootLayout({
   children,
@@ -20,8 +25,19 @@ export default function RootLayout({
                 </div>
             </div>
             <div id="taskwindow" className=" rounded-3xl border bg-purple-50 p-4 mx-4 my-4 mr-1 basis-8/12 flex flex-row">
-                <div className="bg-white basis-4/12 rounded-3xl m-2 shadow-2xl">
-                    
+                <div className="bg-white basis-4/12 rounded-3xl m-4 shadow-2xl flex p-4 flex-col">
+                    <div className="text-black text-2xl font-sans text-gray-800 font-bold my-4">
+                        Chat
+                    </div>
+                    <div className="bg-gray-100 rounded-4xl p-3 text-gray-700 text-md flex flex-row justify-between">
+                        <input type="text" placeholder="Search"/>
+                        <button>
+                        {searchIcon}
+                        </button>
+                    </div>
+                    <div>
+                        
+                    </div>
                 </div>
                 <div className="basis-8/12 rounded-3xl m-2 shadow-xl flex flex-col">
                     <div className="basis-11/12">
