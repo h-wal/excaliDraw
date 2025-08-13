@@ -1,5 +1,7 @@
 import SearchIcon from "../icons/searchIcon"
 import SearchBar from "./searchbar"
+import Users from "./users"
+
 
 export default function UserList(){
     return(
@@ -8,9 +10,7 @@ export default function UserList(){
                 Chat
             </div>
             <SearchBar />
-            <div>
-                
-            </div>
+            <Users />
         </div>
     )
 } 

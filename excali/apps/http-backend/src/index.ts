@@ -3,6 +3,7 @@ import signUpRouter from "./routes/signup.js"
 import signInRouter from "./routes/signin.js"
 import roomRouter from "./routes/room.js"
 import cors from "cors";
+import userRouter from "./routes/users.js";
 import dotenv from "dotenv"
 
 const app = express()
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use("/signup", signUpRouter)
 app.use("/signin", signInRouter)
 app.use("/room", roomRouter)
+app.use("/getUsers", userRouter)
 app.get("/", (req, res) => {
     res.send("hello")
 })
