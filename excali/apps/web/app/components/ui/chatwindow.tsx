@@ -51,10 +51,10 @@ export default  function Chatwindow(props: ChatWindowProps){
             
             <Chat sent={true}></Chat>
             <Chat sent={false}></Chat>
-            {/* <Chat sent={false}></Chat>
+            <Chat sent={false}></Chat>
             <Chat sent={true}></Chat>
             <Chat sent={false}></Chat>
-            <Chat sent={true}></Chat> */}
+            <Chat sent={true}></Chat>
         </div>
     )
 }
