@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 import UserCard from "./userCard";
+import { userWindowCardInterface } from "./chatbox";
 
 interface User {
     name: string,
@@ -9,9 +10,14 @@ interface User {
     profileUrl?: string
 }
 
-export default function UserList() {
+interface UserListProps{
+    setSelectedUser: React.Dispatch<React.SetStateAction<userWindowCardInterface | undefined>> 
+}
+
+export default function UserList({setSelectedUser}: UserListProps) {
 
     const [users, setUsers] = useState<User[]>([])
+    const [currentUser, setCurrentUser] = useState<User>()
 
     useEffect(() => {
         axios.get("http://localhost:3008/getUsers/")
@@ -26,6 +32,7 @@ export default function UserList() {
                 <UserCard
                     key={index}
                     uname={user.name}
+                    setSelectedUser={setSelectedUser}
                     >
                 </UserCard>
             ))}           

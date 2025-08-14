@@ -1,14 +1,18 @@
+import { userWindowCardInterface } from "./chatbox"
+
 interface CardProps {
     uname: string,
     lastActive?: number,
     proflieUrl?: string
+    setSelectedUser: React.Dispatch<React.SetStateAction<userWindowCardInterface | undefined>> 
 }
 
 
-export default function UserCard({uname, lastActive, proflieUrl}: CardProps){
+export default function UserCard({uname, lastActive, proflieUrl, setSelectedUser}: CardProps){
 
     return(
-        <div className="flex flex-row  border-b-2 p-4">
+        //@ts-ignore
+        <div className="flex flex-row  border-b-2 p-4 cursor-pointer hover:bg-gray-300" onClick={() => (console.log(uname), setSelectedUser(uname))}>
             <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                 <svg className="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
             </div>
