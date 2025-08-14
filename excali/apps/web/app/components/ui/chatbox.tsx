@@ -1,8 +1,7 @@
-export interface userWindowCardInterface{
-    uname: string,
-    lastActive?: number,
-    proflieUrl?: string 
-}
+import { userWindowCardInterface } from "../../types/user"
+import InputBar from "./chatinpbar"
+import Chatwindow from "./chatwindow"
+import Chat from "./chat"
 
 interface userProp{
     user?: userWindowCardInterface
@@ -10,7 +9,6 @@ interface userProp{
 
 
 export default function ChatBox(prop: userProp){
-    console.log("hi" +prop.user)
     return(
         <div className="basis-8/12 rounded-3xl m-2 shadow-xl flex flex-col">
             <div className="basis-11/12 flex flex-col">
@@ -22,18 +20,9 @@ export default function ChatBox(prop: userProp){
                         { (prop.user) ? JSON.stringify(prop.user): 'Kindly Select a User to Chat'}
                     </div>
                 </div>
-                <div id="window" className="basis-6/7">
-
-                </div>          
+                <Chatwindow  selectedUser={JSON.stringify(prop.user)}/>         
             </div>
-            <div className="bg-white basis-1/12 rounded-3xl text-gray-700 text-m flex flex-row items-center justify-between px-8">
-                <div className="ml-10">
-                    <input type="text" name="" placeholder="Type a message here..." id="" />
-                </div>
-                <button>
-                    Send
-                </button>
-            </div>
+            <InputBar user={{ uname: "harhs" }} />
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { userWindowCardInterface } from "./chatbox"
+import { userWindowCardInterface } from "../../types/user"
 
 interface CardProps {
     uname: string,
