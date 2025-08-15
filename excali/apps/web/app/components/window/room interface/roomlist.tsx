@@ -6,7 +6,7 @@ import { userWindowCardInterface } from "../../../types/user";
 
 interface Room {
     id: number
-    name: string,
+    slug: string,
 }
 
 interface UserListProps{
@@ -30,7 +30,7 @@ export default function RoomList({setSelectedUser}: UserListProps) {
             {rooms.map((room,index) => (
                 <RoomUserCard
                     key={index}
-                    uname={room.name}
+                    uname={room.slug}
                     setSelectedUser={setSelectedUser}
                     >
                 </RoomUserCard>
