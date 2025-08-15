@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { userWindowCardInterface } from "../../types/user"
+import { userWindowCardInterface } from "../../../types/user"
 import Chat from "./chat"
 import axios from "axios"
 import { getSession } from "next-auth/react"
@@ -27,6 +27,8 @@ export default  function Chatwindow(props: ChatWindowProps){
             try{
                 const res = await axios.get(url);
                 console.log(res.data)
+            }catch(e){
+                console.log("error from axios request"+e)
             }
         } 
         
@@ -49,12 +51,12 @@ export default  function Chatwindow(props: ChatWindowProps){
     return(
         <div className="h-143 overflow-y-auto flex flex-col">
             
-            <Chat sent={true}></Chat>
-            <Chat sent={false}></Chat>
-            <Chat sent={false}></Chat>
-            <Chat sent={true}></Chat>
-            <Chat sent={false}></Chat>
-            <Chat sent={true}></Chat>
+            <Chat sent={true} message="hi there"></Chat>
+            <Chat sent={false} message="hi there"></Chat>
+            <Chat sent={false} message="how are you"></Chat>
+            <Chat sent={true} message="I am fine"></Chat>
+            <Chat sent={false} message="hi there"></Chat>
+            <Chat sent={true} message="good morning"></Chat>
         </div>
     )
 }

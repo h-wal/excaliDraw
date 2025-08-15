@@ -1,6 +1,4 @@
-
-import SearchIcon from "../icons/searchIcon"
-import { userWindowCardInterface } from "../../types/user" 
+import { userWindowCardInterface } from "../../../types/user"
 import SearchBar from "./searchbar"
 import UserList from "./userlist"
 

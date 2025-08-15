@@ -1,5 +1,4 @@
-import { userWindowCardInterface } from "../../types/user"
-
+import { userWindowCardInterface } from "../../../types/user"
 interface CardProps {
     uname: string,
     lastActive?: number,

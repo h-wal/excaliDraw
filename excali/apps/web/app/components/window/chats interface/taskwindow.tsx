@@ -1,8 +1,8 @@
 "use client"
-import LeftBar from "../../components/ui/leftbar";
-import ChatBox from "../../components/ui/chatbox";
+import LeftBar from "./leftbar";
+import ChatBox from "./chatbox";
 import { useState } from "react";
-import { userWindowCardInterface } from "../../types/user";
+import { userWindowCardInterface } from "../../../types/user";
 
 export default function TaskWindow(){
     const [selectedUser, setSelectedUser] = useState<userWindowCardInterface | undefined>()

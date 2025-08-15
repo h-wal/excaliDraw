@@ -1,4 +1,4 @@
-import { userWindowCardInterface } from "../../types/user"
+import { userWindowCardInterface } from "../../../types/user" 
 import InputBar from "./chatinpbar"
 import Chatwindow from "./chatwindow"
 import Chat from "./chat"

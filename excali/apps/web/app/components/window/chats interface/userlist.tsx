@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 import UserCard from "./userCard";
-import { userWindowCardInterface } from "../../types/user";
+import { userWindowCardInterface } from "../../../types/user";
 
 interface User {
     name: string,

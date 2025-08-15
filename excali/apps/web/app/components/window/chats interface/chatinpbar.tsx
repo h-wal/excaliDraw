@@ -1,4 +1,4 @@
-import { userWindowCardInterface } from "../../types/user";
+import { userWindowCardInterface } from "../../../types/user"
 
 interface inputBarProps{
     user: userWindowCardInterface

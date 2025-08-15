@@ -1,21 +1,21 @@
-import { getSession } from "../../lib/auth";
+"use client"
+import NavBar from "../components/navBar/navbar";
+import TaskWindow from "../components/window/chats interface/taskwindow";
+import Profile from "../components/profile/profile";
+import { useState } from "react";
+import RoomWindow from "../components/window/liveinterface/roomwindow";
 
-export default async function Interface(){
-    const session = await getSession();
-    const user = session?.user.name
 
-    if (!session) {
-        return (
-          <div>
-            <h1>You must be signed in to view this page.</h1>
-            <a href="/auth/signin">Sign in</a>
-          </div>
-        );
-      }
+export default function Interface(){
+
+    const [selectedMenu, setSelectedMenu] = useState("room")
 
     return(
-        <div>
-            hi there, {user}
+        <div id="backdrop" className="h-screen w-screen bg-blue-800 text-white flex flex-row ">
+            <NavBar></NavBar>
+            {(selectedMenu === "chat") ? <TaskWindow></TaskWindow> : <div />}
+            {(selectedMenu === "room") ? <RoomWindow></RoomWindow> : <div />}
+            <Profile></Profile>
         </div>
-    );
+    )
 }
