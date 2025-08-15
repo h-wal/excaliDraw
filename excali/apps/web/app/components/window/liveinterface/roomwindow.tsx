@@ -1,8 +1,12 @@
+import RoomLeftBar from "../room interface/roomleftbar"
+import RoomChatBox from "../room interface/roomchatbox"
+
 export default function RoomWindow () {
 
     return(
-        <div>
-            this is the room window
+        <div className="flex flex-row w-full">
+            <RoomLeftBar></RoomLeftBar>
+            <RoomChatBox></RoomChatBox>
         </div>
     )
 }
