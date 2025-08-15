@@ -8,9 +8,9 @@ export default function TaskWindow(){
     const [selectedUser, setSelectedUser] = useState<userWindowCardInterface | undefined>()
     
     return(
-        <div id="taskwindow" className=" rounded-3xl border bg-indigo-50 p-4 mx-4 my-4 mr-1 basis-8/12 flex flex-row">
-                <LeftBar setSelectedUser={setSelectedUser} />
-                <ChatBox user={selectedUser} />
+        <div className="flex flex-row w-full">
+            <LeftBar setSelectedUser={setSelectedUser} />
+            <ChatBox user={selectedUser} />
         </div>
     )
 }
