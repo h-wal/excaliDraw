@@ -9,10 +9,18 @@ const {prismaClient} = db;
 const roomRouter: Router = express.Router();
 
 async function getChatsRouterfunction(req: Request, res: Response){
-    const roomId = Number(req.params.roomId);
+    console.log("got request")
+    const slug = req.params.slug;
     const message = await prismaClient.chat.findMany({
         where:{
-            roomId: roomId
+            slug: slug
+        },
+        include:{
+            user:{
+                select:{
+                    name: true
+                }
+            }
         },
         orderBy:{
             id: "desc"
@@ -20,11 +28,9 @@ async function getChatsRouterfunction(req: Request, res: Response){
         take: 50
     });
 
-    res.json({
-        message: message
-    })
+    res.json({message})
 }
 
-roomRouter.get("/chats/:roomId", getChatsRouterfunction)
+roomRouter.get("/chats/:slug", getChatsRouterfunction)
 
 export default roomRouter

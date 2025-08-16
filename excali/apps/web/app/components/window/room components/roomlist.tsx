@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 import RoomUserCard from "./roomuserCard";
-import { userWindowCardInterface } from "../../../types/user";
+import { RoomtypeInterface } from "../../../types/user";
+
 
 interface Room {
     id: number
@@ -10,10 +11,10 @@ interface Room {
 }
 
 interface UserListProps{
-    setSelectedUser: React.Dispatch<React.SetStateAction<userWindowCardInterface | undefined>> 
+    setSelectedRoom: React.Dispatch<React.SetStateAction<RoomtypeInterface | undefined>> 
 }
 
-export default function RoomList({setSelectedUser}: UserListProps) {
+export default function RoomList({setSelectedRoom}: UserListProps) {
 
     const [rooms, setRooms] = useState<Room[]>([])
     // const [currentUser, setCurrentUser] = useState<User>()
@@ -31,7 +32,7 @@ export default function RoomList({setSelectedUser}: UserListProps) {
                 <RoomUserCard
                     key={index}
                     uname={room.slug}
-                    setSelectedUser={setSelectedUser}
+                    setSelectedRoom={setSelectedRoom}
                     >
                 </RoomUserCard>
             ))}           

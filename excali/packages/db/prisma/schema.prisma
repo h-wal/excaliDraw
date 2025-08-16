@@ -24,15 +24,18 @@ model Chat {
   createdAt       DateTime         @default(now())
   userId          String
   user            User             @relation(fields: [userId], references: [id])
-  roomId          Int
-  room            Room             @relation(fields: [roomId], references: [id])
+  roomId          Int?
+  room            Room?             @relation(name: "chatToRoomId", fields: [roomId], references: [id])
+  roomslug        String
+  roomslugfk      Room             @relation(name: "chatToRoomSlug", fields: [roomslug], references: [slug])
 }
 
 model Room {
   id              Int              @id @default(autoincrement())
-  slug            String  
+  slug            String           @unique
   createdAt       DateTime         @default(now())
   adminId         String
   admin           User             @relation(fields: [adminId], references: [id])
-  chats           Chat[]
+  chatsbyid       Chat[]           @relation("chatToRoomId")
+  chatsbyslug     Chat[]           @relation("chatToRoomSlug")
 }

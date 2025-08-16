@@ -1,12 +1,12 @@
-import { userWindowCardInterface } from "../../../types/user"
+import { RoomtypeInterface } from "../../../types/user"
 import RoomSearchBar from "./roomsearchbar"
 import RoomUserList from "./roomlist"
 
 interface LeftBarProps {
-    setSelectedUser : React.Dispatch<React.SetStateAction<userWindowCardInterface | undefined>> 
+    setSelectedRoom : React.Dispatch<React.SetStateAction<RoomtypeInterface | undefined>> 
 }
 
-export default function RoomLeftBar({setSelectedUser}: LeftBarProps){
+export default function RoomLeftBar({setSelectedRoom}: LeftBarProps){
 
     return(
         <div className="bg-white basis-4/12 rounded-3xl m-4 shadow-2xl flex p-4 flex-col">
@@ -14,7 +14,7 @@ export default function RoomLeftBar({setSelectedUser}: LeftBarProps){
                 Rooms
             </div>
             <RoomSearchBar />
-            <RoomUserList setSelectedUser={setSelectedUser} />
+            <RoomUserList setSelectedRoom={setSelectedRoom} />
         </div>
     )
 } 

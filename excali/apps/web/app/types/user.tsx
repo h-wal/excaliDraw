@@ -3,3 +3,8 @@ export interface userWindowCardInterface{
     lastActive?: number,
     proflieUrl?: string 
 }
+
+export interface RoomtypeInterface{
+    slug: string,
+    adminId?: string
+}
