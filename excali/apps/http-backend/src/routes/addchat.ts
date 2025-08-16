@@ -15,9 +15,9 @@ async function addChatRouterFunction(req: Request, res: Response){
         data: {
             message: chat,
             userId: userId
-            roomslugfk:{
-                connect: {slug: roomslug}
-            },
+            // roomslugfk:{
+            //     connect: {slug: roomslug}
+            // },
             roomslug: roomslug
         } as unknown as Prisma.ChatUncheckedCreateInput
     })
