@@ -2,13 +2,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 import RoomUserCard from "./roomuserCard";
-import { RoomtypeInterface } from "../../../types/user";
+import { RoomtypeInterface } from "../../../types/types";
 
-
-interface Room {
-    id: number
-    slug: string,
-}
 
 interface UserListProps{
     setSelectedRoom: React.Dispatch<React.SetStateAction<RoomtypeInterface | undefined>> 
@@ -16,13 +11,13 @@ interface UserListProps{
 
 export default function RoomList({setSelectedRoom}: UserListProps) {
 
-    const [rooms, setRooms] = useState<Room[]>([])
+    const [rooms, setRooms] = useState<RoomtypeInterface[]>([])
     // const [currentUser, setCurrentUser] = useState<User>()
 
     useEffect(() => {
         axios.get("http://localhost:3008/getRooms/")
-            .then((res) => setRooms(res.data))
-            .catch((err) => console.log("Error Fetchind Data", err))
+            .then((res) => {console.log(res.data) , setRooms(res.data)})
+            .catch((err) => console.log("Error Fetchin Data", err))
     }, []);
 
 
@@ -31,7 +26,7 @@ export default function RoomList({setSelectedRoom}: UserListProps) {
             {rooms.map((room,index) => (
                 <RoomUserCard
                     key={index}
-                    uname={room.slug}
+                    room={room}
                     setSelectedRoom={setSelectedRoom}
                     >
                 </RoomUserCard>

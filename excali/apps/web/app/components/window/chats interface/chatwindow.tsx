@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { userWindowCardInterface } from "../../../types/user"
+import { userWindowCardInterface } from "../../../types/types"
 import Chat from "./chat"
 import axios from "axios"
 import { getSession } from "next-auth/react"

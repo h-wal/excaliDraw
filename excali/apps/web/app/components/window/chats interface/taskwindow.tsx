@@ -2,7 +2,7 @@
 import LeftBar from "./leftbar";
 import ChatBox from "./chatbox";
 import { useState } from "react";
-import { userWindowCardInterface } from "../../../types/user";
+import { userWindowCardInterface } from "../../../types/types";
 
 export default function TaskWindow(){
     const [selectedUser, setSelectedUser] = useState<userWindowCardInterface | undefined>()

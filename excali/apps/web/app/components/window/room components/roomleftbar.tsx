@@ -1,4 +1,4 @@
-import { RoomtypeInterface } from "../../../types/user"
+import { RoomtypeInterface } from "../../../types/types"
 import RoomSearchBar from "./roomsearchbar"
 import RoomUserList from "./roomlist"
 

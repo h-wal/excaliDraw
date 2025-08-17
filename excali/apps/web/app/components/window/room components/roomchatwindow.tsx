@@ -2,42 +2,35 @@
 import { useEffect, useState , useRef} from "react"
 import RoomChat from "./roomchat"
 import axios from "axios"
-import { getSession, useSession } from "next-auth/react"
+import { getSession } from "next-auth/react"
+import { RoomtypeInterface } from "../../../types/types"
+import { RoomChatTypeInterface } from "../../../types/types"
 
 interface RoomChatWindowProps{
-    slug: string
+    room: RoomtypeInterface | undefined
 }
 
-interface Message{
-    id: number,
-    message: string,
-    createdAt: string
-    roomid? : number
-    slug: string
-    userId: string
-    user: {
-        name: string
-    }
-}
 
 export default function RoomChatwindow(props: RoomChatWindowProps){
 
-    const [messages , setmessages] = useState<Message []>([])
+    const [messages , setmessages] = useState<RoomChatTypeInterface []>([])
     const [username, setUsername] = useState<string | null>()
 
     useEffect(() => {
 
-        if(!props.slug){
+        if(!props.room){
             return
         }
         
         async function getUrl(){
-            console.log(props.slug)
-            const roomSlug = props.slug.slice(3,-3)
-            const url = `http://localhost:3008/room/chats/${roomSlug}`
+            console.log(props.room?.id)
+            const roomId = props.room?.id
+            const url = `http://localhost:3008/getchat`
 
             try{
-                const res = await axios.get(url);
+                const res = await axios.post(url, {
+                    roomId: roomId
+                });
 
                 console.log(res.data.message)
                 setmessages(res.data.message)
@@ -48,7 +41,7 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
         
         getUrl()
 
-    }, [props.slug])
+    }, [props.room])
 
     useEffect(() => {
         async function getsessionusername(){

@@ -31,6 +31,6 @@ async function getChatsRouterfunction(req: Request, res: Response){
     res.json({message})
 }
 
-getChatRouter.get("/", getChatsRouterfunction)
+getChatRouter.post("/", getChatsRouterfunction)
 
 export default getChatRouter

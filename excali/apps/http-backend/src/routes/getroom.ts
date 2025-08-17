@@ -10,8 +10,14 @@ async function getRoomRouterFunction(req: Request, res: Response){
     try{
         const response = await prismaClient.room.findMany({
             select:{
+                id: true,
                 slug: true,
-                adminId: true
+                adminId: true,
+                admin: {
+                    select:{
+                        name: true
+                    }
+                }
             }
         })
         res.json(response)

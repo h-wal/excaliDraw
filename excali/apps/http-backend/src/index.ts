@@ -6,6 +6,7 @@ import userRouter from "./routes/users.js";
 import getRoomsRouter from "./routes/getroom.js";
 import addChatRouter from "./routes/addchat.js";
 import getChatRouter from "./routes/getchat.js";
+import getUserIdRouter from "./routes/getuserid.js"
 import dotenv from "dotenv"
 
 const app = express()
@@ -19,6 +20,7 @@ app.use("/getUsers", userRouter)
 app.use("/getChat", getChatRouter)
 app.use("/getRooms", getRoomsRouter)
 app.use("/addchat", addChatRouter)
+app.use("/getuserId", getUserIdRouter)
 app.get("/", (req, res) => {
     res.send("hello")
 })
