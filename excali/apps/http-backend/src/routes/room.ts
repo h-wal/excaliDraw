@@ -12,9 +12,9 @@ async function getChatsRouterfunction(req: Request, res: Response){
     console.log("got request")
     const slug = req.params.slug;
     const message = await prismaClient.chat.findMany({
-        where:{
-            slug: slug
-        },
+        // where:{
+        //     slug: slug
+        // },
         include:{
             user:{
                 select:{

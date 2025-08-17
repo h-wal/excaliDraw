@@ -10,7 +10,7 @@ datasource db {
 model User {
   id              String          @id @default(uuid())
   email           String          @unique
-  name            String?
+  name            String?         @unique
   password        String
   photo           String?
   rooms           Room[]
@@ -24,10 +24,10 @@ model Chat {
   createdAt       DateTime         @default(now())
   userId          String
   user            User             @relation(fields: [userId], references: [id])
-  roomId          Int?
-  room            Room?             @relation(name: "chatToRoomId", fields: [roomId], references: [id])
-  roomslug        String
-  roomslugfk      Room             @relation(name: "chatToRoomSlug", fields: [roomslug], references: [slug])
+  roomId          Int
+  room            Room             @relation(fields: [roomId], references: [id])
+  // roomslug        String?
+  // roomslugfk      Room?             @relation(name: "chatToRoomSlug", fields: [roomslug], references: [slug])
 }
 
 model Room {
@@ -36,6 +36,6 @@ model Room {
   createdAt       DateTime         @default(now())
   adminId         String
   admin           User             @relation(fields: [adminId], references: [id])
-  chatsbyid       Chat[]           @relation("chatToRoomId")
-  chatsbyslug     Chat[]           @relation("chatToRoomSlug")
+  chatsbyid       Chat[]           
+  // chatsbyslug     Chat[]           @relation("chatToRoomSlug")
 }

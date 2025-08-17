@@ -8,23 +8,25 @@ const addChatRouter: Router = express.Router()
 
 async function addChatRouterFunction(req: Request, res: Response){
     const chat = req.body.chat as string
-    const roomslug = req.body.roomslug as string
+    const roomId = req.body.roomId as number
     const userId = req.body.userId as string
 
-    const response = await prismaClient.chat.create({
+    try{
+        const response = await prismaClient.chat.create({
         data: {
             message: chat,
-            userId: userId
-            // roomslugfk:{
-            //     connect: {slug: roomslug}
-            // },
-            roomslug: roomslug
-        } as unknown as Prisma.ChatUncheckedCreateInput
-    })
+            userId: userId,
+            roomId: roomId
+        }
+        })
 
-    console.log(response)
-
-    
+        console.log(response)
+        res.json(response)
+    } catch (e){
+        res.json({
+            "message": "error fetching data" + e
+        })
+    }
 }
 
 addChatRouter.post("/", addChatRouterFunction)
