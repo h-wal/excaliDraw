@@ -26,8 +26,6 @@ model Chat {
   user            User             @relation(fields: [userId], references: [id])
   roomId          Int
   room            Room             @relation(fields: [roomId], references: [id])
-  // roomslug        String?
-  // roomslugfk      Room?             @relation(name: "chatToRoomSlug", fields: [roomslug], references: [slug])
 }
 
 model Room {

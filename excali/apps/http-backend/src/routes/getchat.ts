@@ -6,15 +6,15 @@ dotenv.config();
 
 const {prismaClient} = db;
 
-const roomRouter: Router = express.Router();
+const getChatRouter: Router = express.Router();
 
 async function getChatsRouterfunction(req: Request, res: Response){
     console.log("got request")
-    const slug = req.params.slug;
+    const roomId = req.body.roomId as number;
     const message = await prismaClient.chat.findMany({
-        // where:{
-        //     slug: slug
-        // },
+        where:{
+            roomId: roomId
+        },
         include:{
             user:{
                 select:{
@@ -31,6 +31,6 @@ async function getChatsRouterfunction(req: Request, res: Response){
     res.json({message})
 }
 
-roomRouter.get("/chats/:slug", getChatsRouterfunction)
+getChatRouter.get("/", getChatsRouterfunction)
 
-export default roomRouter
+export default getChatRouter
