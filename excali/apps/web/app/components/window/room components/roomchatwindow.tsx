@@ -15,12 +15,19 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
 
     const [messages , setmessages] = useState<RoomChatTypeInterface []>([])
     const [username, setUsername] = useState<string | null>()
+    const chatEndRef = useRef<any>(null);
+
+    useEffect(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
 
     useEffect(() => {
 
         if(!props.room){
             return
         }
+        
+
         
         async function getUrl(){
             console.log(props.room?.id)
@@ -32,14 +39,16 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
                     roomId: roomId
                 });
 
-                console.log(res.data.message)
                 setmessages(res.data.message)
             }catch(e){
                 console.log("error from axios request"+e)
             }
         } 
         
-        getUrl()
+        setInterval(() => {
+            getUrl()
+        }, 100)
+        
 
     }, [props.room])
 
@@ -58,9 +67,9 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
     
 
     return(
-        <div className="h-143 overflow-y-auto flex flex-col">
+        <div className="h-143 overflow-y-auto flex flex-col space-y-reverse">
             
-            {messages.map((message,index) => (
+            {messages.slice().reverse().map((message,index) => (
                 <RoomChat 
                     id={message.id}
                     key={index}

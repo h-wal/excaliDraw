@@ -19,32 +19,33 @@ export default function RoomInputBar(props: inputBarProps){
 
         console.log("use effect ran")
 
-        // async function getUserDetails(){
-        //     const session = await getSession()
-        //     user.current = session?.user
+        async function getUserDetails(){
+            const session = await getSession()
+            user.current = session?.user
 
         console.log(user)
         console.log
 
 
-        const response = await axios.post("localhost:3008/getuserId",{
-            //@ts-ignore
+        const response = await axios.post("http://localhost:3008/getuserId",{
             userName: user?.current.name,
-            //@ts-ignore
             userEmail: user?.current.email
         })
 
-        console.log(response)
+        user.current = response.data.id
+        console.log(user.current)
     }
         getUserDetails()
+
     }, [])
 
     const [message, setmessage] = useState("")
 
     function sendMessage(message: string){
+        console.log(user.current)
         axios.post("http://localhost:3008/addChat", {
             chat: message,
-            userId: 1, 
+            userId: user.current, 
             roomId: props.room?.id
         })
     }
