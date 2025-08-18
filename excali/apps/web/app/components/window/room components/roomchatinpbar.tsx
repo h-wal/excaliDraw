@@ -17,8 +17,6 @@ export default function RoomInputBar(props: inputBarProps){
 
     useEffect(() => {
 
-        console.log("use effect ran")
-
         async function getUserDetails(){
             const session = await getSession()
             user.current = session?.user

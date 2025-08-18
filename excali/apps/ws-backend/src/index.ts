@@ -10,7 +10,7 @@ const wss = new WebSocketServer( {port : 8000} );
 interface User {
     ws: WebSocket,
     rooms: string[],
-    userid: string
+    username: string
 }
 
 const users: User[] = [];
@@ -44,8 +44,6 @@ wss.on('connection', function connection(ws, request){
         return;
     }
 
-    const queryParams = new URLSearchParams(url.split('?')[1]);
-    console.log(queryParams)
 
     let token = "";
 
@@ -56,24 +54,21 @@ wss.on('connection', function connection(ws, request){
     //@ts-ignore
     token = url.split('?')[1]; // fallback: entire token is after ?
     }
-    console.log(token)
 
-    const userid = checkUser(token);
+    const username = (token);
 
-    console.log(userid)
+    console.log(username)
 
 
     
-    if(userid == null){ 
+    if(username == null){ 
         ws.close();
         return;
     }
 
-    console.log(users)
-
     users.push({
         ws,
-        userid,
+        username,
         rooms: []
     })
 
@@ -117,13 +112,13 @@ wss.on('connection', function connection(ws, request){
             const message = parsedData.message;
             console.log(message, roomid)
 
-            await prismaClient.chat.create({
-                data: {
-                  roomId: Number(roomid),
-                  message,
-                  userId : userid,
-                }
-            });
+            // await prismaClient.chat.create({
+            //     data: {
+            //       roomId: Number(roomid),
+            //       message,
+            //       userId : userid,
+            //     }
+            // });
 
             users.forEach((users) => {
                 console.log(users)
