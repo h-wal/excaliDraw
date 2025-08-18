@@ -15,11 +15,6 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
 
     const [messages , setmessages] = useState<RoomChatTypeInterface []>([])
     const [username, setUsername] = useState<string | null>()
-    const chatEndRef = useRef<any>(null);
-
-    useEffect(() => {
-        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]);
 
     useEffect(() => {
 
@@ -27,9 +22,9 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
             return
         }
         
-
         
-        async function getUrl(){
+        async function getPrevMessages(){
+            console.log(props.room)
             console.log(props.room?.id)
             const roomId = props.room?.id
             const url = `http://localhost:3008/getchat`
@@ -44,13 +39,12 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
                 console.log("error from axios request"+e)
             }
         } 
-        
-        setInterval(() => {
-            getUrl()
-        }, 100)
+
+        getPrevMessages()
+
         
 
-    }, [props.room])
+    }, [props.room?.id])
 
     useEffect(() => {
         async function getsessionusername(){
@@ -63,6 +57,8 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
         getsessionusername()
 
     }, [])
+
+
 
     
 
