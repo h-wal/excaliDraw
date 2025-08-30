@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 export default function useSocket(username?: string | null){
 
     console.log("from use Socket" + username)
-    // const WS_URL = process.env.WS_URL
-    // console.log("wsurl = "+WS_URL)
+    const WS_URL = process.env.WS_URL
+    console.log("wsurl = "+WS_URL)
     const [loading, setLoading] = useState(true);
     const [socket, setSocket] = useState<WebSocket>();
     const [error, setError] = useState<string | null>(null);
