@@ -46,7 +46,7 @@ export const authOptions = {
   ],
 
   pages: {
-    signIn: "/auth/signin", // 👈 Your custom sign-in page
+    signIn: "/auth/signin", 
   },
 
   session: {
