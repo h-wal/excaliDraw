@@ -3,7 +3,7 @@ import { RoomtypeInterface } from "../../../types/types"
 import SendIcon from "../../icons/sendicon"
 import { useState, useEffect, useRef } from "react"
 import { getSession } from "next-auth/react"
-import axios from "axios"
+import { chatAPI } from "../../../lib/api"
 
 interface inputBarProps{
     room: RoomtypeInterface | undefined
@@ -28,12 +28,9 @@ export default function RoomInputBar(props: inputBarProps){
 
                 console.log("User session:", user.current)
 
-                const response = await axios.post("http://localhost:3008/getuserId", {
-                    userName: user.current.name,
-                    userEmail: user.current.email
-                })
+                const response = await chatAPI.getUserId(user.current.name, user.current.email)
 
-                user.current = response.data.id
+                user.current = response.id
                 console.log("User ID:", user.current)
                 setError(null)
             } catch (err) {
@@ -60,11 +57,7 @@ export default function RoomInputBar(props: inputBarProps){
                 roomId: props.room.id
             })
 
-            await axios.post("http://localhost:3008/addChat", {
-                chat: messageText,
-                userId: user.current, 
-                roomId: props.room.id
-            })
+            await chatAPI.addChat(messageText, user.current, props.room.id)
 
             setMessage("")
         } catch (err) {

@@ -1,11 +1,11 @@
 "use client"
 import { useEffect, useState, useRef } from "react"
 import RoomChat from "./roomchat"
-import axios from "axios"
 import { getSession } from "next-auth/react"
 import { RoomtypeInterface, RoomChatTypeInterface } from "../../../types/types"
 import useSocket from "../../../hooks/useSocket"
 import { WebSocketMessageTypes } from "../../../types/websocket"
+import { chatAPI } from "../../../lib/api"
 
 interface RoomChatWindowProps{
     room: RoomtypeInterface | undefined
@@ -40,13 +40,10 @@ export default function RoomChatwindow(props: RoomChatWindowProps){
             
             try {
                 console.log("Fetching messages for room:", props.room?.id)
-                const url = `http://localhost:3008/getchat`
 
-                const res = await axios.post(url, {
-                    roomId: props.room?.id
-                });
+                const res = await chatAPI.getChat(props.room?.id);
 
-                setMessages(res.data.message || [])
+                setMessages(res.message || [])
             } catch(e) {
                 console.error("Error fetching messages:", e)
                 setError("Failed to load messages")
