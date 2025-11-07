@@ -1,23 +1,23 @@
-# 🧩 Real-time Collaborative Chat & Drawing Platform
+# Real-time Collaborative Chat & Drawing Platform
 
 A full-stack **real-time collaboration app** (inspired by Excalidraw) that enables multiple users to **chat, draw, and interact in shared rooms** — all updated instantly via **WebSockets**.
 Built for scalability and maintainability using a **Turborepo monorepo architecture** with **Next.js**, **Express**, **Prisma**, and **PostgreSQL**.
 
 ---
 
-## 🚀 Features
+##  Features
 
 * ⚡ **Real-time Collaboration:** Multi-user chat and drawing powered by **WebSockets** (`ws`).
-* 💬 **Room-based Messaging:** Create/join chat rooms; all events (join, leave, message) are broadcast live.
-* 🔐 **Secure Authentication:** User login/signup via **NextAuth (Credentials + JWT)**.
-* 🧠 **Persistent Storage:** User profiles, chat logs, and rooms stored in **PostgreSQL** via **Prisma ORM**.
-* 🧱 **Scalable Architecture:** Built as a **Turborepo monorepo** with shared `@repo/db` and config packages.
-* 🧩 **Modular UI Components:** Reusable chat window, sidebar, search, and profile sections built with **Next.js App Router** and **Tailwind CSS**.
-* 🧰 **Developer Friendly:** Type-safe APIs, ESLint + TypeScript standardization, and rapid local setup via **PNPM workspaces**.
+*  **Room-based Messaging:** Create/join chat rooms; all events (join, leave, message) are broadcast live.
+*  **Secure Authentication:** User login/signup via **NextAuth (Credentials + JWT)**.
+*  **Persistent Storage:** User profiles, chat logs, and rooms stored in **PostgreSQL** via **Prisma ORM**.
+*  **Scalable Architecture:** Built as a **Turborepo monorepo** with shared `@repo/db` and config packages.
+*  **Modular UI Components:** Reusable chat window, sidebar, search, and profile sections built with **Next.js App Router** and **Tailwind CSS**.
+*  **Developer Friendly:** Type-safe APIs, ESLint + TypeScript standardization, and rapid local setup via **PNPM workspaces**.
 
 ---
 
-## 🧱 Tech Stack
+##  Tech Stack
 
 | Layer            | Technologies                                                                 |
 | :--------------- | :--------------------------------------------------------------------------- |
@@ -29,7 +29,7 @@ Built for scalability and maintainability using a **Turborepo monorepo architect
 
 ---
 
-## 📁 Monorepo Structure
+##  Monorepo Structure
 
 ```
 /apps
@@ -42,22 +42,22 @@ Built for scalability and maintainability using a **Turborepo monorepo architect
 
 ---
 
-## ⚙️ Setup & Installation
+##  Setup & Installation
 
-### 1️⃣ Clone the repository
+###  Clone the repository
 
 ```bash
 git clone https://github.com/<your-username>/realtime-collab.git
 cd realtime-collab
 ```
 
-### 2️⃣ Install dependencies
+###  Install dependencies
 
 ```bash
 pnpm install
 ```
 
-### 3️⃣ Configure environment variables
+###  Configure environment variables
 
 Create a `.env` file in both `/apps/web` and `/apps/server`:
 
@@ -76,13 +76,13 @@ NEXTAUTH_URL=http://localhost:3000
 NEXT_PUBLIC_WS_URL=ws://localhost:4000
 ```
 
-### 4️⃣ Run the database migrations
+###  Run the database migrations
 
 ```bash
 pnpm db:push
 ```
 
-### 5️⃣ Start development servers
+### Start development servers
 
 ```bash
 pnpm dev
@@ -93,15 +93,15 @@ Backend runs on **[http://localhost:4000](http://localhost:4000)**
 
 ---
 
-## 🧩 Core Functionality Overview
+## Core Functionality Overview
 
-### 🔗 Authentication Flow
+### Authentication Flow
 
 * Implemented with **NextAuth (Credentials)** strategy.
 * Uses **JWT tokens** for session management.
 * Securely stores user credentials and tokens in PostgreSQL.
 
-### 💬 Real-time Chat
+### Real-time Chat
 
 * Each room creates a WebSocket channel.
 * `join`, `leave`, and `message` events are broadcast to all connected clients.
@@ -114,7 +114,7 @@ Backend runs on **[http://localhost:4000](http://localhost:4000)**
 
 ---
 
-## 🧠 Architecture Diagram
+##  Architecture Diagram
 
 ```
  ┌─────────────┐        ┌──────────────┐        ┌─────────────┐
@@ -128,7 +128,7 @@ Backend runs on **[http://localhost:4000](http://localhost:4000)**
 
 ---
 
-## 🧑‍💻 Key Highlights
+## Key Highlights
 
 * Built **custom `useSocket` React hook** to manage connect/disconnect/error and broadcast events.
 * Designed **relational Prisma schema** for users, rooms, and chats.
@@ -137,7 +137,7 @@ Backend runs on **[http://localhost:4000](http://localhost:4000)**
 
 ---
 
-## 🧪 Example API Routes
+##  Example API Routes
 
 | Route                | Method | Description                   |
 | -------------------- | ------ | ----------------------------- |
